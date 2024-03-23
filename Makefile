@@ -1,23 +1,23 @@
 # This file is part of dijkstra.
-# 
-# dijkstra is free software: you can redistribute it and/or modify it under 
-# the terms of the GNU General Public License as published by the Free Software 
-# Foundation, either version 3 of the License, or (at your option) any later 
+#
+# dijkstra is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later
 # version.
-# 
-# dijkstra is distributed in the hope that it will be useful, but WITHOUT ANY 
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR 
+#
+# dijkstra is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
 # A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-# 
-# You should have received a copy of the GNU General Public License along with 
+#
+# You should have received a copy of the GNU General Public License along with
 # dijkstra. If not, see <https://www.gnu.org/licenses/>.
 #
 # dijkstra - Copyright (c) 2024 Guillaume Dupont
 # Contact: <guillaume.dupont@toulouse-inp.fr>
 CC=gcc
-SDL=/mnt/n7fs/ens/tp_dupont/clibs/SDL2
-CFLAGS_D=-g -Wall -Wextra -pedantic -O0 -D_REENTRANT -D_DEBUG -DSTRICT_THREADING -I$(SDL)
-CFLAGS=-Wall -Wextra -O2 -D_REENTRANT -I$(SDL)
+SDL=$(shell sdl2-config --cflags) -I/mnt/n7fs/ens/tp_dupont/clibs/SDL2
+CFLAGS_D=-g -Wall -Wextra -pedantic -O0 -D_REENTRANT -D_DEBUG -DSTRICT_THREADING $(SDL)
+CFLAGS=-Wall -Wextra -O2 -D_REENTRANT $(SDL)
 LD=gcc
 LDFLAGS=-lm -lrt -L$(SDL) -lSDL2 -lSDL2_ttf -lSDL2_gfx -ldl -lpthread
 LDFLAGS_D= $(LDFLAGS) #-lmcheck
@@ -124,6 +124,5 @@ clean:
 	-rm -f test_liste_noeud
 	-rm -f test_dijkstra
 
-
-
+install:
 

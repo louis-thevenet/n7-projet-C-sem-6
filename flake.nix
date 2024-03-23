@@ -22,51 +22,50 @@
         , system
         , ...
         }:
-
         {
-          packages.default = pkgs.stdenv.mkDerivation rec {
+          packages.default = pkgs.stdenv.mkDerivation {
             name = "dijkstra";
             version = "1.0";
 
             src = ./.;
             nativeBuildInputs = with pkgs; [
+              gccStdenv
+            ];
+
+            buildInputs = with pkgs; [
               SDL2
-              SDL
+              SDL2_ttf
               SDL2_gfx
-              SDL2_mixer
-              SDL_ttf
             ];
 
 
             buildPhase = ''
-              make
+              make dijkstra
             '';
-
             installPhase = ''
+              mkdir -p $out/bin
+              cp dijkstra $out/bin/
             '';
           };
+
+
+
 
           devShells.default = pkgs.mkShell {
             inputsFrom = [
               config.treefmt.build.devShell
             ];
-            nativeBuildInputs = with pkgs; [
-              SDL2
-              SDL
-              SDL2_gfx
 
-              SDL2_mixer
-              SDL_ttf
-            ];
             packages = with pkgs; [
+              SDL2
+              SDL2_ttf
+              SDL2_gfx
               gdb
               valgrind
             ];
           };
 
 
-          # Add your auto-formatters here.
-          # cf. https://numtide.github.io/treefmt/
           treefmt.config = {
             projectRootFile = "flake.nix";
             programs = {
