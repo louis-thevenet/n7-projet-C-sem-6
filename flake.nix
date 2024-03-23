@@ -53,12 +53,17 @@
             nativeBuildInputs = with pkgs; [
               SDL2
               SDL
-                            SDL2_gfx
+              SDL2_gfx
 
               SDL2_mixer
               SDL_ttf
             ];
+            packages = with pkgs; [
+              gdb
+              valgrind
+            ];
           };
+
 
           # Add your auto-formatters here.
           # cf. https://numtide.github.io/treefmt/
