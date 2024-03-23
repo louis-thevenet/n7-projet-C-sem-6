@@ -99,7 +99,7 @@ noeud_id_t precedent_noeud_liste(const liste_noeud_t *liste, noeud_id_t noeud);
  * @param liste [in] liste à parcourir
  * @return noeud qui minimise la distance, ou `NO_ID` si pas de noeud
  */
-noeud_id_t min_noeud_liste(liste_noeud_t *liste);
+noeud_id_t min_noeud_liste(const liste_noeud_t *liste);
 
 /**
  * inserer_noeud_liste : insère le noeud donné dans la liste

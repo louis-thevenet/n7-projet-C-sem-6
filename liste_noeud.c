@@ -76,8 +76,11 @@ noeud_id_t precedent_noeud_liste(const liste_noeud_t *liste, noeud_id_t noeud) {
   return precedent_noeud_liste(liste->suivant, noeud);
 }
 
-noeud_id_t min_noeud_liste(liste_noeud_t *liste) {
-  liste_noeud_t *head = liste;
+noeud_id_t min_noeud_liste(const liste_noeud_t *liste) {
+  liste_noeud_t *tmp = malloc(sizeof(liste_noeud_t));
+  liste_noeud_t *head = tmp;
+  *head=*liste;
+
   noeud_id_t min_noeud = NO_ID;
   float min = INFINITY;
 
@@ -88,6 +91,7 @@ noeud_id_t min_noeud_liste(liste_noeud_t *liste) {
     }
     head = head->suivant;
   }
+  free(tmp);
   return min_noeud;
 }
 
