@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Petit script bash qui test la conformance des fichiers rendus
 #
 # /!\ NE PAS MODIFIER /!\
@@ -15,7 +15,7 @@ check_fichier () {
     fi
 
     echo "Vérification de la syntaxe pour $1 :" >>$logfile
-    echo "gcc -std=c99 -c -Wall -Wextra -pedantic -Werror -fsyntax-only -x c $1" >>$logfile 
+    echo "gcc -std=c99 -c -Wall -Wextra -pedantic -Werror -fsyntax-only -x c $1" >>$logfile
     gcc -std=c99 -c -Wall -Wextra -pedantic -Werror -fsyntax-only -x c "$1" >>$logfile 2>&1
 
     if [ $? -ne 0 ]; then
@@ -36,7 +36,7 @@ check_garde () {
     # Ajoute une constante statique
     sed "/$anchor/a\
         static const int x = 1;" ${include} > ${tmpfile}
- 
+
     read -r -d '' RESULT <<END_DOC
 #include "${tmpfile}"
 #include "${tmpfile}"
@@ -220,7 +220,7 @@ check \
     "min_noeud_liste const-correcte" \
     "liste_noeud.h" \
     "const liste_noeud_t* t = creer_liste(); min_noeud_liste(t);" \
-    "La fonction min_noeud_liste devrait indiquer qu'elle ne modifie pas la liste" 
+    "La fonction min_noeud_liste devrait indiquer qu'elle ne modifie pas la liste"
 
 if [ $err -ne 0 ]; then
     echo "Le fichier liste_noeud.h n'est pas conforme"
