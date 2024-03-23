@@ -22,9 +22,44 @@
  * Dijkstra
  * @param noeud noeud vers lequel on veut construire le chemin depuis le départ
  */
-// TODO: construire_chemin_vers
+void construire_chemin_vers(liste_noeud_t *chemin, liste_noeud_t *visites, noeud_id_t noeud) {
+    if (noeud==NO_ID) return;
+    construire_chemin_vers(chemin, visites, precedent_noeud_liste(visites, noeud));
+    inserer_noeud_liste(chemin, noeud, precedent_noeud_liste(visites, noeud), distance_noeud_liste(visites, noeud));
+}
 
 float dijkstra(const struct graphe_t *graphe, noeud_id_t source,
                noeud_id_t destination, liste_noeud_t **chemin) {
-  // TODO
+
+  liste_noeud_t* a_visites = creer_liste();
+    inserer_noeud_liste(a_visites, source, NO_ID,0.0);
+
+  liste_noeud_t* visites = creer_liste();
+
+  noeud_id_t* voisins = malloc(sizeof(noeud_id_t) * nombre_noeuds(graphe));
+
+  while(!est_vide_liste(a_visites)){
+    noeud_id_t noeud_courant = min_noeud_liste(a_visites);
+    inserer_noeud_liste(visites, noeud_courant,
+         precedent_noeud_liste(a_visites, noeud_courant),
+          distance_noeud_liste(a_visites, noeud_courant)
+          );
+    supprimer_noeud_liste(a_visites, noeud_courant);
+
+    int n = nombre_voisins(graphe,noeud_courant);
+    noeuds_voisins(graphe, noeud_courant, voisins);
+
+    for (int i=0; i<n; i++) {
+        int distance_par_nc = noeud_distance(graphe,noeud_courant, voisins[i]) + distance_noeud_liste(visites, noeud_courant);
+        int distance_voisin = distance_noeud_liste(a_visites, voisins[i]);
+        if (distance_par_nc < distance_voisin){
+            changer_noeud_liste(a_visites, voisins[i], noeud_courant, distance_par_nc);
+        }
+    }
+  }
+
+*chemin = creer_liste();
+construire_chemin_vers(*chemin, visites, destination);
+return distance_noeud_liste(*chemin, destination);
+
 }
