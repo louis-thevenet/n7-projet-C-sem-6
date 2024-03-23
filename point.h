@@ -1,23 +1,24 @@
 // This file is part of dijkstra.
-// 
-// dijkstra is free software: you can redistribute it and/or modify it under 
-// the terms of the GNU General Public License as published by the Free Software 
-// Foundation, either version 3 of the License, or (at your option) any later 
+//
+// dijkstra is free software: you can redistribute it and/or modify it under
+// the terms of the GNU General Public License as published by the Free Software
+// Foundation, either version 3 of the License, or (at your option) any later
 // version.
-// 
-// dijkstra is distributed in the hope that it will be useful, but WITHOUT ANY 
-// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR 
+//
+// dijkstra is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
 // A PARTICULAR PURPOSE. See the GNU General Public License for more details.
-// 
-// You should have received a copy of the GNU General Public License along with 
+//
+// You should have received a copy of the GNU General Public License along with
 // dijkstra. If not, see <https://www.gnu.org/licenses/>.
 //
 // dijkstra - Copyright (c) 2024 Guillaume Dupont
 // Contact: <guillaume.dupont@toulouse-inp.fr>
 /**
  * @file point.h
- * @brief Module point qui définit les points cartésiens. On utilise point_t plutôt
- * que SDL_Point pour les points "réels" (par opposition aux points dans les écrans).
+ * @brief Module point qui définit les points cartésiens. On utilise point_t
+ * plutôt que SDL_Point pour les points "réels" (par opposition aux points dans
+ * les écrans).
  *
  * @author G. Dupont
  * @version 1.0
@@ -28,13 +29,14 @@
 #include <stdbool.h>
 
 /**
- * Le type `point_t` pour représenter des points cartésiens avec coordonnées réelles.
+ * Le type `point_t` pour représenter des points cartésiens avec coordonnées
+ * réelles.
  */
 struct point_t {
-    /** Abscisse du point */
-    double x,
-    /** Ordonnée du point */
-           y;
+  /** Abscisse du point */
+  double x,
+      /** Ordonnée du point */
+      y;
 };
 
 /** Typedef pour l'enregistrement `point_t` */
@@ -51,12 +53,13 @@ point_t creer_point(double x, double y);
 /**
  * Copier un point.
  *
- * Post-conditions : si cible != NULL, cible->x == source.x, cible->y == source.y
+ * Post-conditions : si cible != NULL, cible->x == source.x, cible->y ==
+ * source.y
  *
  * @param cible [out] point récepteur de la copie
  * @param source point à copier
  */
-void copier_point(point_t* cible, point_t source);
+void copier_point(point_t *cible, point_t source);
 
 /**
  * Distance (euclidienne) entre deux points.
@@ -73,11 +76,9 @@ double distance(point_t a, point_t b);
  *
  * @param a premier point
  * @param b second point
- * @param precision seuil en-dessous duquel les points sont considérés comme égaux
+ * @param precision seuil en-dessous duquel les points sont considérés comme
+ * égaux
  */
 bool egal(point_t a, point_t b, double precision);
 
-
 #endif // POINT_H
-
-
