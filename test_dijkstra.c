@@ -277,7 +277,7 @@ int main() {
   ASSERT_EQ_F(dist, (float)(colonnes - 1), PRECISION);
   END_TEST
 
-  BEGIN_TESTI("haut-guahce--bas-gauche")
+  BEGIN_TESTI("haut-gauche--bas-gauche")
   float dist =
       dijkstra(graphe, noeuds[0], noeuds[colonnes * (lignes - 1)], NULL);
   ASSERT_EQ_F(dist, (float)(lignes - 1), PRECISION);
