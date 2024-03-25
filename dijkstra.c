@@ -69,6 +69,9 @@ float dijkstra(const struct graphe_t *graphe, noeud_id_t source,
     *chemin = creer_liste();
     construire_chemin_vers(*chemin, visites, destination);
   }
-
-  return distance_noeud_liste(visites, destination);
+  float res =  distance_noeud_liste(visites, destination);
+detruire_liste(&a_visites);
+detruire_liste(&visites);
+free(voisins);
+return res;
 }

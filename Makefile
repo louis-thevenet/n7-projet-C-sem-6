@@ -15,16 +15,16 @@
 # dijkstra - Copyright (c) 2024 Guillaume Dupont
 # Contact: <guillaume.dupont@toulouse-inp.fr>
 CC=gcc
-SDL=$(shell sdl2-config --cflags) -I/mnt/n7fs/ens/tp_dupont/clibs/SDL2
-CFLAGS_D=-g -Wall -Wextra -pedantic -O0 -D_REENTRANT -D_DEBUG -DSTRICT_THREADING $(SDL)
-CFLAGS=-Wall -Wextra -O2 -D_REENTRANT $(SDL)
+SDL=/mnt/n7fs/ens/tp_dupont/clibs/SDL2
+CFLAGS_D=-g -Wall -Wextra -pedantic -O0 -D_REENTRANT -D_DEBUG -DSTRICT_THREADING -I$(SDL)
+CFLAGS=-Wall -Wextra -O2 -D_REENTRANT -I$(SDL)
 LD=gcc
 LDFLAGS=-lm -lrt -L$(SDL) -lSDL2 -lSDL2_ttf -lSDL2_gfx -ldl -lpthread
 LDFLAGS_D= $(LDFLAGS) #-lmcheck
 LDFLAGS_T=-lm -lrt -L. -lt
 OBJECTS= \
 	point.o graphe.o \
-	parse_util.o graphe_parse.o \
+	parse_util.o  graphe_parse.o \
 	liste_noeud.o dijkstra.o \
 	viewport.o \
 	graphrep.o window.o app.o
